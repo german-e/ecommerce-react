@@ -12,6 +12,7 @@ import CreateProduct from './pages/CreateProduct';
 import EditProduct from './pages/EditProduct';
 
 import {user} from './data/user';
+import ProductsList from './pages/ProductsList';
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
         
         <Route path='auth/register' element={<Register />} />
         <Route path='auth/login' element={<Login />} />
-        <Route path='products' element={<Products />} />
+        <Route path='products' element={<ProductsList />} />
         <Route path='categories' element={<Login />} />
         <Route path='products/:id' element={<Login />} />
         <Route path='cart/details' element={<Login />} />

@@ -1,7 +1,54 @@
 const ProductImages = ({ images }) => {
   return (
     <>
-      <div id="carouselExampleIndicators" class="carousel slide">
+
+<div id="carouselExampleIndicators" class="carousel slide">
+  
+    {images.map((img, index) => {
+      return (
+       <>
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label={`Slide ${index + 1 }`}
+              ></button>
+          </div>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src={img} class="d-block w-100" alt="Imagen del Producto" />
+            </div>
+          </div>
+          
+        </>       
+      ) })}
+
+
+<button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+     </div>
+
+      {/* <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
           <button
             type="button"
@@ -53,7 +100,7 @@ const ProductImages = ({ images }) => {
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-      </div>
+      </div> */}
     </>
   );
 };

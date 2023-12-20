@@ -1,6 +1,7 @@
 import { useState } from "react";
-import useFetchData from '../hooks/useFetchDate';
-import '../styles/products.css'
+
+import ProductImages from "./ProductImages";
+import '../styles/ProductCard.css';
 
 const ProductCard = ({product}) => {
     
@@ -8,6 +9,8 @@ const ProductCard = ({product}) => {
 
 
     const [favorite, setFavorite] = useState(true);
+
+    const {id, title, description, price, images, category} = product;
 
 
     
@@ -29,14 +32,12 @@ const ProductCard = ({product}) => {
                 </button>
                 {/*<img src="/img/smarhphone1.png" />*/}
 
-                {product.images.map( img => {
-                    return (
-                        <ImageProduct image={img} />
-                    )
-
-                })}
                 
-                <img src="{images[0]}" />
+                <ProductImages images={images} />
+                    
+
+                
+                
                 
                 
                 
@@ -50,7 +51,7 @@ const ProductCard = ({product}) => {
                 <p className='sku'>{id}</p>
                 <p className='price'>$ {price}</p>
                 <p className='description'>{description}</p>
-                <p className='quantity'>Category: </p>
+                <p className='quantity'>Category: {category.name}</p>
 
             </div>
        
@@ -61,4 +62,4 @@ const ProductCard = ({product}) => {
     )
 }
  
-export default Products;
+export default ProductCard;
