@@ -1,0 +1,140 @@
+.product-card {
+        
+    display: flex;
+    flex-direction: column;    
+    
+    align-items: center;
+    background: #e7eeeb;
+    width: 80%; 
+    height: 300px;
+    padding: 10px;
+    
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px rgba(128, 128, 128, 0.158);
+    margin: auto;
+
+
+    max-width: 500px;
+}
+
+.product-card-img{
+    width: 150px;
+    height: 240px;
+    border-radius: 10px;
+    left: -35px; 
+    top: 40px;
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.432);
+    background-color: white; 
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center    
+}
+
+.product-card-img button{
+    border: none;
+    background-color: transparent;
+    position: relative;
+
+    top:-95px;
+    left: 50px;
+
+    color: red;
+    
+    cursor: pointer;
+
+    }
+
+.product-card-img>button>i{
+    font-size:20px;
+    
+}
+.product-card-img img{    
+   position: absolute;    
+   width: 80%;   
+   
+   /* filter:brightness();
+   mix-blend-mode:multiply; */
+       
+    
+}
+
+.product-card-img>img:hover{    
+    width: 100%;
+    
+}
+
+.product-card-detail{
+    padding-left: 125px ;
+    
+}
+.name{
+    font-size: 1.2em;
+    margin-bottom: 1px;
+    color: rgb(70, 65, 65);    
+    
+}
+.sku{
+    color: gray;
+    font-size: 12px;
+    margin: 0;
+}
+
+.price {
+    color:rgb(218, 8, 8);
+    font-size: 40px;
+    font-weight:200;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.description {
+    font-size: 14px;
+    color: rgb(109, 104, 104);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* start showing ellipsis when 3rd line is reached */
+    white-space: pre-wrap; /* let the text wrap preserving spaces */
+}
+
+.quantity{
+    color: crimson;
+    margin-top: 7px;
+}
+
+.btn-cart {
+    position: static;
+    color: whitesmoke;
+    border: none;
+    background-color: rgb(218, 8, 8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 1px 10px rgba(128, 128, 128, 0.493);
+    align-self: flex-end;    
+    margin-top: 20px;
+    margin-right: 10px;
+    
+
+}
+.off {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: red;
+    top: -20px;
+    left: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    transform: rotate(-30deg);
+
+}
