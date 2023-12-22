@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ProductCard from '../components/ProductCard';
+import ProductCard2 from "../components/ProductCard2";
 import useFetchData from "../hooks/useFetchDate";
 
 
@@ -33,10 +34,11 @@ const ProductsList = () => {
                         onFilterChanged={setSearchText}/>
                 </div>
             </div> */}
-            <div className="d-flex flex-wrap gap-2">
+            <h2>Productos</h2>
+            <div className="d-flex flex-wrap">
                 {productFiltered.map(product => {
                     return(
-                        <ProductCard product={product} />
+                        <ProductCard2 product={product} />
                         )
                     })}
             </div>

@@ -30,10 +30,10 @@ const ProductCard = ({product}) => {
                         : <i class="fas fa-heart"></i> 
                     }                    
                 </button>
-                {/*<img src="/img/smarhphone1.png" />*/}
+                <img src={product.images[0]} />
 
                 
-                <ProductImages images={images} />
+                {/* <ProductImages images={images} /> */}
                     
 
                 

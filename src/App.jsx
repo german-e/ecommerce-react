@@ -13,6 +13,7 @@ import EditProduct from './pages/EditProduct';
 
 import {user} from './data/user';
 import ProductsList from './pages/ProductsList';
+import ProductImages from './components/ProductImages';
 
 
 function App() {
@@ -30,8 +31,8 @@ function App() {
         <Route path='auth/login' element={<Login />} />
         <Route path='products' element={<ProductsList />} />
         <Route path='categories' element={<Login />} />
-        <Route path='products/:id' element={<Login />} />
-        <Route path='cart/details' element={<Login />} />
+        <Route path='products/:id' element={<ProductImages />} />
+        
 
         <Route path='products/create' element={
             <AdminRequired>
