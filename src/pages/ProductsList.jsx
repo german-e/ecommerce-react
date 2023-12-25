@@ -3,15 +3,21 @@ import ProductCard from '../components/ProductCard';
 import ProductCard2 from "../components/ProductCard2";
 import useFetchData from "../hooks/useFetchDate";
 
+import { useQuery } from "@tanstack/react-query";
+import { getData } from "../data/getData";
 
 const ProductsList = () => {
 
     const [searchText, setSearchText] = useState('');
 
-    const {data, isLoading, error} = useFetchData('https://api.escuelajs.co/api/v1/products');
+   // const {data, isLoading, error} = useFetchData('https://api.escuelajs.co/api/v1/products');
 
-    let productFiltered = data
-        .filter( p => p.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1 
+   const query = useQuery({
+    queryKey: ['products'],
+    queryFn: () =>  getData('https://api.escuelajs.co/api/v1/products')
+   })
+
+    let productFiltered = query.data?.filter( p => p.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1 
               || p.description.toLowerCase().indexOf(searchText.toLocaleLowerCase()) != -1);
 
 
@@ -20,6 +26,15 @@ const ProductsList = () => {
 
     }
     
+
+    if (query.isLoading){
+        return (
+            <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Cargando...</span>
+            </button>
+        )
+    }
    
     return (
         <>
@@ -38,7 +53,9 @@ const ProductsList = () => {
             <div className="d-flex flex-wrap">
                 {productFiltered.map(product => {
                     return(
+                        <div class="col-lg-3 col-md-4 mb-5 p-2 rounded shadow-sm">
                         <ProductCard2 product={product} />
+                        </div>
                         )
                     })}
             </div>

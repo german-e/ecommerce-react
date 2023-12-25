@@ -1,0 +1,14 @@
+.images-grid{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 7px;
+    
+}
+
+.product-details {
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5px;
+
+}

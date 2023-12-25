@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
+import CartIcon from "../../CartIcon";
 
 const NavBar = () => {
 
@@ -35,8 +36,10 @@ const NavBar = () => {
                 </form>
 
                 <div>
+                    <CartIcon cartItem={3} />
+                    
                     <Link  onClick={handleShow} to="/auth/login" className="btn btn-link text-decoration-none me-2">Login</Link>
-                <button type="button" class="btn btn-link">Sign up</button>
+                    <button type="button" class="btn btn-link">Sign up</button>
                 </div>
             </div>
         </div>
