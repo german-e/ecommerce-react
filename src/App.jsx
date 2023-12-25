@@ -7,7 +7,6 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import CreateProduct from './pages/CreateProduct';
 import EditProduct from './pages/EditProduct';
 
 import ProductsList from './pages/ProductsList';
@@ -17,9 +16,12 @@ import ProductImages from './components/ProductImages';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ProductDetail from './pages/ProductDetail';
 import CartDetail from './pages/CartDetail';
+import ProductCreate from './pages/ProductCreate';
 
 
 const queryClient = new QueryClient();
+
+let user = "german";
 
 function App() {
   
@@ -45,7 +47,7 @@ function App() {
 
         <Route path='products/create' element={
             <AdminRequired>
-              <CreateProduct />
+              <ProductCreate />
             </AdminRequired>} />
 
         <Route path='products/edit/:id' element={
