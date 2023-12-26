@@ -1,44 +1,28 @@
 import { Link } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const CartDetail = () => {
 
-    const cartItem = [{
-        image: 'https://i.imgur.com/QkIa5tT.jpeg',
-        productName: 'Zapatillas deportivas Air-jordan',
-        price: 158.25,
-        quantity: 3
-    },
-    {
-        image: 'https://i.imgur.com/kg1ZhhH.jpeg',
-        productName: 'Gorgeous Steel Computer',
-        price: 10558.25,
-        quantity: 2
-    },
-    {
-        image: 'https://i.imgur.com/ZKGofuB.jpeg',
-        productName: 'Buzo deportivo Negro Hombre',
-        price: 10052,
-        quantity: 1
-    },
-    {
-        image: 'https://i.imgur.com/QkIa5tT.jpeg',
-        productName: 'Zapatillas deportivas Air-jordan',
-        price: 15800.75,
-        quantity: 2
-    },
-]
+
+    const {myCart} = useContext(CartContext);
+
+
+
+    console.log('CartDetail -> Es valor de myCar es: ', myCart)
+
 
     function totalAmount() {
         let count = 0;
-        cartItem.forEach( item => {
-            count += item.quantity * item.price;
+        myCart.forEach( item => {
+            count += item.quantity * item.product.price;
         })
 
         return count;
     }
 
-    let qtyProduct = cartItem.map(item => item.quantity).reduce( (a, b) => a+b ) ;
+    let qtyProduct = 12 // myCart.map(item => item.quantity).reduce( (a, b) => a+b ) ;
     
     return ( 
         <>
@@ -53,7 +37,7 @@ const CartDetail = () => {
                 <div className="col-8 border p-2">
                     Mis productos
 
-                    {cartItem.map( item => {
+                    {myCart.map( item => {
                         return <CartItem cartItem={item} />
                     })}
 

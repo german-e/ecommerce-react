@@ -5,10 +5,14 @@ const CartItem = ({ cartItem }) => {
   const [subTotal, setSubTotal] = useState(cartItem.price * count);
 
 
+  const {title, description, price, images} = cartItem.product;
+
+
+  console.log('Cart Item Compopnent: ', cartItem)
   
 
   useEffect( () => {
-    setSubTotal(cartItem.price * count);
+    setSubTotal(price * count);
   }, [count])
 
   return (
@@ -17,15 +21,15 @@ const CartItem = ({ cartItem }) => {
         {/* Image and Description */}
         <div className="d-flex">
           <img
-            src={cartItem.image}
+            src={images[0]}
             alt="Image del product"
             width={100}
             className="border rounded"
           />
 
           <div className="mx-2">
-            <h6 className="text-secondary">{cartItem.productName}</h6>
-            <h5 className="fw-bold">$ {cartItem.price.toFixed(2)}</h5>
+            <h6 className="text-secondary">{title}</h6>
+            <h5 className="fw-bold">$ {price.toFixed(2)}</h5>
 
             <div className="d-flex align-items-center">
               <button

@@ -2,14 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import ProductImages from "../components/ProductImages";
 import { useParams } from "react-router-dom";
 import { getData } from "../data/getData";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../styles/detailsProduct.css";
+import { CartContext } from "../context/CartContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const URL = `https://api.escuelajs.co/api/v1/products/${id}`;
   const query = useQuery({
-    queryKey: ["productByCategory"],
+    queryKey: ["productById"],
     queryFn: () => getData(URL),
   });
 
@@ -20,6 +21,12 @@ const ProductDetail = () => {
   const [fav, setFav] = useState(false);
 
   console.log("Talle es: ", size);
+
+  
+  
+  const {handleAddProductToCart } = useContext(CartContext);
+
+
 
   return (
     <>
@@ -154,7 +161,9 @@ const ProductDetail = () => {
                   +
                 </button>
               </div>
-            <button className="btn btn-primary">
+            <button onClick={
+              () => handleAddProductToCart({product:query.data, quantity: count})
+            } className="btn btn-primary">
               Agregar Carrito<i class="fas fa-shopping-cart mx-1"></i>
             </button>
             </div>
