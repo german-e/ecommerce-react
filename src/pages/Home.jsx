@@ -25,7 +25,7 @@ const Home = () => {
     <div className="d-flex flex-column align-items-center">
 
       <h2 className="text-center mt-4" style={{fontSize:40}}>Our last arrive</h2>
-      <button className="btn btn-outline-dark" >Shop All</button>
+      <Link to="/products" className="btn btn-outline-dark" >Shop All</Link>
     </div>
         <section className="d-flex flex-wrap border-bottom p-3">
           {lastArrive?.map((prod) => {
