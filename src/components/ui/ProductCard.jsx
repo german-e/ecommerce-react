@@ -15,8 +15,8 @@ const ProductCard = ({product}) => {
             <div className='product-card-img'>
                 <button onClick={handleClick}>
                     {favorite 
-                        ? <i class="far fa-heart"></i> 
-                        : <i class="fas fa-heart"></i> 
+                        ? <i className="far fa-heart"></i> 
+                        : <i className="fas fa-heart"></i> 
                     }                    
                 </button>
                 {/*<img src="/img/smarhphone1.png" />*/}

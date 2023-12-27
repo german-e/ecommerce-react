@@ -14,39 +14,39 @@ const ProductCard2 = ({ product }) => {
     }
   return (
     <>
-          <div class="product-wrapper mb-3 text-center">
-            <div class="product-img">
+          <div className="product-wrapper mb-3 text-center">
+            <div className="product-img">
               <Link to={`/product/${product.id}`}>
                 <img src={`${img}`}  alt="Product Image" />
               </Link>
               
 
-              <span class="text-center d-flex">              
+              <span className="text-center d-flex">              
                  $ {product.price.toFixed(2)}
-                 <i class="material-symbols-outlined position-absolute top-50 start-100 bottom-100 translate-middle text-dark">sell</i>               
+                 <i className="material-symbols-outlined position-absolute top-50 start-100 bottom-100 translate-middle text-dark">sell</i>               
                  
               </span>
 
-              <button class=" btn btn-sm text-bg-dark shadow-sm position-absolute top-0 end-0 m-3">{product.category.name}</button>              
+              <button className=" btn btn-sm text-bg-dark shadow-sm position-absolute top-0 end-0 m-3">{product.category.name}</button>              
               
               </div>
              
             
-            <div class="product-action">
-                <div class="product-action-style d-flex">                    
+            <div className="product-action">
+                <div className="product-action-style d-flex">                    
                 <p className='text-secondary' style={{fontSize: 12}}>{product.description}</p>
                   {/* <button className='btn btn-sm d-flex align-items-center m-auto'>
-                    <i class="material-symbols-outlined text-primary">shopping_cart</i>
+                    <i className="material-symbols-outlined text-primary">shopping_cart</i>
                   </button>
                   <button className='btn btn-sm d-flex align-items-center m-auto'>
-                    <i class="material-symbols-outlined text-danger">favorite</i>                    
+                    <i className="material-symbols-outlined text-danger">favorite</i>                    
                   </button> */}
                 </div>
               </div>
           </div>
           <h5>{product.title}</h5>
           
-          <button className='btn btn-sm align-self-end btn-primary d-flex align-items-center'>Add to Cart<i class="material-symbols-outlined px-2">shopping_cart</i> </button>
+          <button className='btn btn-sm align-self-end btn-primary d-flex align-items-center'>Add to Cart<i className="material-symbols-outlined px-2">shopping_cart</i> </button>
           
         </>
     

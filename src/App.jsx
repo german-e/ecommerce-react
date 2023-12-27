@@ -15,97 +15,111 @@ import ProductDetail from "./pages/ProductDetail";
 import CartDetail from "./pages/CartDetail";
 import ProductCreate from "./pages/ProductCreate";
 import { CartContext } from "./context/CartContext";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import PageNotFound from "./pages/PageNotFound";
+import { AuthContext } from "./context/AuthContext";
+
+import { useAuth } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
 
-let user = "german";
-
 function App() {
-  const [myCart, setMyCart] = useState([]);
+  const [myCartItem, setMyCartItem] = useState([]);
 
   useEffect(() => {
-    let myCartStored = localStorage.getItem("myCart");
+    const itemStored = JSON.parse(localStorage.getItem("myCart"));
 
-    console.log("My Cart Store", myCartStored);
-    if (myCartStored) {
-      setMyCart(JSON.parse(myCartStored));
+    if (!itemStored) {
+      setMyCartItem(itemStored);
     }
-
-
   }, []);
 
-  function deleteItemCart(){
+  useEffect(() => {
+    if (myCartItem) localStorage.setItem("myCart", JSON.stringify(myCartItem));
+  }, [myCartItem]);
 
+  function deleteItemCart(productId) {
+    let newItems = myCartItem.filter((item) => item.product.id != productId);
+
+    setMyCartItem(newItems);
   }
 
   function addProductToCart(cartItem) {
-    console.log("Cart Items en handleAddProductToCart", cartItem);
+    console.log("Func AddProductToCart");
 
+    let isItemStorage =
+      myCartItem &&
+      myCartItem.find((item) => item.product.id === cartItem.product.id);
 
-    myCart.forEach( item => {
-      if (item.produc.id === cartItem.produc.id){
-        item.quantity = cartItem.quantity;        
-      }
-    })
+    console.log("item Store find ", isItemStorage);
 
-    
-    
+    if (isItemStorage) {
+      isItemStorage.quantity += cartItem.quantity;
 
-    
+      let itemsInCart = myCartItem.filter(
+        (item) => item.product.id != cartItem.product.id
+      );
+      console.log("new Data con filter ", itemsInCart);
 
-    if (searchItem) {
-      searchItem.quantity = cartItem.quantity;
-      setMyCart([...myCart, searchItem]);
+      itemsInCart.push(isItemStorage);
+
+      setMyCartItem(itemsInCart);
+    } else {
+      console.log("entro en el else");
+      setMyCartItem([...myCartItem, cartItem]);
     }
 
-    setMyCart([...myCart, cartItem]);
-
-    localStorage.setItem("myCart", JSON.stringify(myCart));
+    // localStorage.setItem("myCart", JSON.stringify(myCartItem));
   }
 
   const cartValue = {
-    myCart,
+    myCartItem,
     addProductToCart,
+    deleteItemCart,
   };
+
+  const { user, login, logout, addUser } = useAuth();
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
+            
+      <AuthContext.Provider value={{ user, addUser }}>
         <CartContext.Provider value={cartValue}>
           <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
 
-              <Route path="auth/register" element={<Register />} />
-              <Route path="auth/login" element={<Login />} />
-              <Route path="categories" element={<Login />} />
+                <Route path="auth/register" element={<Register />} />
+                <Route path="auth/login" element={<Login />} />
+                <Route path="categories" element={<Login />} />
 
-              <Route path="products" element={<ProductsList />} />
-              <Route path="product/:id" element={<ProductDetail />} />
-              <Route path="cart-detail" element={<CartDetail />} />
+                <Route path="products" element={<ProductsList />} />
+                <Route path="product/:id" element={<ProductDetail />} />
+                <Route path="cart-detail" element={<CartDetail />} />
 
-              <Route
-                path="products/create"
-                element={
-                  <AdminRequired>
-                    <ProductCreate />
-                  </AdminRequired>
-                }
-              />
+                <Route
+                  path="products/create"
+                  element={
+                    <AdminRequired>
+                      <ProductCreate />
+                    </AdminRequired>
+                  }
+                />
 
-              <Route
-                path="products/edit/:id"
-                element={
-                  <AdminRequired>
-                    <EditProduct />
-                  </AdminRequired>
-                }
-              />
-            </Route>
+                <Route
+                  path="products/edit/:id"
+                  element={
+                    <AdminRequired>
+                      <EditProduct />
+                    </AdminRequired>
+                  }
+                />
+                <Route path="*" element={<PageNotFound />} />
+              </Route>
           </Routes>
         </CartContext.Provider>
-      </QueryClientProvider>
+      </AuthContext.Provider>
+            
     </>
   );
 }
@@ -114,9 +128,16 @@ function App() {
  *
  */
 const AdminRequired = ({ children }) => {
+  const { user } = useContext(AuthContext);
+
   const currentLocation = useLocation();
+
+  console.log("Estoy en AdminRequired ", user);
+
   if (!user) {
-    return <Navigate to="/login" state={{ from: currentLocation }} replace />;
+    return (
+      <Navigate to="/auth/login" state={{ from: currentLocation }} replace />
+    );
   }
 
   return children;

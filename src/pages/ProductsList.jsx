@@ -29,8 +29,8 @@ const ProductsList = () => {
 
     if (query.isLoading){
         return (
-            <button class="btn btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <button className="btn btn-primary" type="button" disabled>
+                <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 <span role="status">Cargando...</span>
             </button>
         )
@@ -42,7 +42,7 @@ const ProductsList = () => {
                 <div className="search">
                     <form onSubmit={handleSubmit}>
                         <input value={searchText} onChange={(ev) => setSearchTe(ev.target.value)} type="text" className="search-input" placeholder='Busca un producto...'/>
-                        <button className='search-btn' type="submit"><i class="fas fa-search"></i></button>
+                        <button className='search-btn' type="submit"><i className="fas fa-search"></i></button>
                     </form>
                     <Search 
                         filterText={searchText} 
@@ -53,7 +53,7 @@ const ProductsList = () => {
             <div className="d-flex flex-wrap">
                 {productFiltered.map(product => {
                     return(
-                        <div class="col-lg-3 col-md-4 mb-5 p-2 rounded shadow-sm">
+                        <div className="col-lg-3 col-md-4 mb-5 p-2 rounded shadow-sm">
                         <ProductCard2 product={product} />
                         </div>
                         )

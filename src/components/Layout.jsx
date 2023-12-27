@@ -5,7 +5,7 @@ import Footer from "./ui/footer/Footer";
 const Layout = () => {
     return ( 
         <>
-        <header class="p-2">
+        <header className="p-2">
             <NavBar />
         </header>
 

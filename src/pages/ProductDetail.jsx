@@ -24,7 +24,7 @@ const ProductDetail = () => {
 
   
   
-  const {handleAddProductToCart } = useContext(CartContext);
+  const {addProductToCart } = useContext(CartContext);
 
 
 
@@ -42,9 +42,9 @@ const ProductDetail = () => {
               </h4>
               <span onClick={() => setFav(!fav)}>
                 {fav ? (
-                  <i class="far fa-heart fs-4 text-danger"></i>
+                  <i className="far fa-heart fs-4 text-danger"></i>
                 ) : (
-                  <i class="fas fa-heart fs-4 text-danger"></i>
+                  <i className="fas fa-heart fs-4 text-danger"></i>
                 )}
               </span>
             </div>
@@ -53,12 +53,12 @@ const ProductDetail = () => {
             <h3 className="">$ {query.data?.price.toFixed(2)}</h3>
 
             <p>
-              <i class="far fa-credit-card me-2"></i>Hasta 3 cuotas{" "}
+              <i className="far fa-credit-card me-2"></i>Hasta 3 cuotas{" "}
               <strong>sin interés</strong>
             </p>
 
             <p>
-              <i class="fas fa-truck text-success me-2"></i>Envío gratis a todo
+              <i className="fas fa-truck text-success me-2"></i>Envío gratis a todo
               el país
             </p>
           </div>
@@ -86,53 +86,53 @@ const ProductDetail = () => {
 
               <input
                 type="radio"
-                class="btn-check"
+                className="btn-check"
                 name="options-base"
                 id="sizeS"
                 autocomplete="off"
                 value="S"
                 onClick={(ev) => setSize(ev.target.value)}
               />
-              <label class="btn mx-2" htmlFor="sizeS">
+              <label className="btn mx-2" htmlFor="sizeS">
                 S
               </label>
 
               <input
                 type="radio"
-                class="btn-check"
+                className="btn-check"
                 name="options-base"
                 id="sizeM"
                 autocomplete="off"
                 value="M"
                 onClick={(ev) => setSize(ev.target.value)}
               />
-              <label class="btn mx-2" for="sizeM">
+              <label className="btn mx-2" for="sizeM">
                 M
               </label>
 
               <input
                 type="radio"
-                class="btn-check"
+                className="btn-check"
                 name="options-base"
                 id="sizeL"
                 autocomplete="off"
                 value="L"
                 onClick={(ev) => setSize(ev.target.value)}
               />
-              <label class="btn mx-2" for="sizeL">
+              <label className="btn mx-2" for="sizeL">
                 L
               </label>
 
               <input
                 type="radio"
-                class="btn-check"
+                className="btn-check"
                 name="options-base"
                 id="sizeXL"
                 autocomplete="off"
                 value="XL"
                 onClick={(ev) => setSize(ev.target.value)}
               />
-              <label class="btn mx-2" for="sizeXL">
+              <label className="btn mx-2" for="sizeXL">
                 XL
               </label>
             </div>
@@ -162,13 +162,13 @@ const ProductDetail = () => {
                 </button>
               </div>
             <button onClick={
-              () => handleAddProductToCart({product:query.data, quantity: count})
+              () => addProductToCart({product:query.data, quantity: count})
             } className="btn btn-primary">
-              Agregar Carrito<i class="fas fa-shopping-cart mx-1"></i>
+              Agregar Carrito<i className="fas fa-shopping-cart mx-1"></i>
             </button>
             </div>
 
-            {/* <button className="btn btn-outline-primary mt-2">Comprar Ahora <i class="fas fa-cash-register"></i></button> */}
+            {/* <button className="btn btn-outline-primary mt-2">Comprar Ahora <i className="fas fa-cash-register"></i></button> */}
           </div>
         </div>
       </div>

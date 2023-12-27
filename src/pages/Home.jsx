@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getData } from "../data/getData";
 import ProductCard2 from "../components/ProductCard2";
+import { useContext } from "react";
+import AuthorizationContex from "../context/AuthorizationContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
+  
   const queryCategory = useQuery({
     queryKey: ["categories"],
     queryFn: () => getData("https://api.escuelajs.co/api/v1/categories"),
@@ -15,9 +19,17 @@ const Home = () => {
     queryFn: () => getData("https://api.escuelajs.co/api/v1/products"),
   });
 
+
+  //--> Busca los ultimos 8 productos creados.
   const lastArrive = queryProduct.data
     ?.sort((a, b) => a.creationAt > b.creationAt)
     .slice(0, 8);
+
+
+  const {user} = useContext(AuthContext);
+
+
+
   return (
     <>
       <div className="container">
@@ -26,12 +38,15 @@ const Home = () => {
 
       <h2 className="text-center mt-4" style={{fontSize:40}}>Our last arrive</h2>
       <Link to="/products" className="btn btn-outline-dark" >Shop All</Link>
+
+
+      <small>Username: { user }</small>
     </div>
         <section className="d-flex flex-wrap border-bottom p-3">
           {lastArrive?.map((prod) => {
             return (
               <>
-        <div class="col-lg-6 col-md-6 mb-5 p-2 rounded border shadow-sm">
+        <div className="col-lg-6 col-md-6 mb-5 p-2 rounded border shadow-sm">
 
 
                 <ProductCard2 product={prod} />
@@ -46,15 +61,15 @@ const Home = () => {
         <section className="d-flex flex-wrap justify-content-center mt-3">
           {queryCategory.data?.map((category) => {
             return (
-              <div class="card col-md-2 me-2 mb-4 shadow-sm">
+              <div className="card col-md-2 me-2 mb-4 shadow-sm">
                 <img
                   src={category.image}
                   className="card-img-top"
                   alt={`Imagen de categoría ${category.name}`}
                 />
 
-                <div class="position-absolute bottom-0 text-center w-100 m-auto mb-3 me-2">
-                  <p class="card-text text-bg-light fs-5 py-2">
+                <div className="position-absolute bottom-0 text-center w-100 m-auto mb-3 me-2">
+                  <p className="card-text text-bg-light fs-5 py-2">
                     {category.name.toUpperCase()}
                   </p>
                 </div>

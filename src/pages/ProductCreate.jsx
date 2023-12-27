@@ -31,7 +31,7 @@ const ProductCreate = () => {
                     </div>
                 </div>
 
-                <div class="row mb-4">
+                <div className="row mb-4">
                     <label htmlFor="image" className="col-sm-3 col-form-label">Image</label>
                     <div className="col-sm-9">
                         <input className="form-control" type="file" id="image" />

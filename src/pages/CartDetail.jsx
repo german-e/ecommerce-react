@@ -6,16 +6,16 @@ import { CartContext } from "../context/CartContext";
 const CartDetail = () => {
 
 
-    const {myCart} = useContext(CartContext);
+    const {myCartItem} = useContext(CartContext);
 
 
 
-    console.log('CartDetail -> Es valor de myCar es: ', myCart)
+    console.log('CartDetail -> Es valor de myCar es: ', myCartItem)
 
 
     function totalAmount() {
         let count = 0;
-        myCart.forEach( item => {
+        myCartItem.forEach( item => {
             count += item.quantity * item.product.price;
         })
 
@@ -31,13 +31,13 @@ const CartDetail = () => {
 
             
 
-            <div className="row">
+            <div className="row mb-3">
 
             {/* Items */}
                 <div className="col-8 border p-2">
                     Mis productos
 
-                    {myCart.map( item => {
+                    {myCartItem.map( item => {
                         return <CartItem cartItem={item} />
                     })}
 

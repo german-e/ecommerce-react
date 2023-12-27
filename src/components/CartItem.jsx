@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../context/CartContext";
 
 const CartItem = ({ cartItem }) => {
   const [count, setCount] = useState(cartItem.quantity);
   const [subTotal, setSubTotal] = useState(cartItem.price * count);
 
 
-  const {title, description, price, images} = cartItem.product;
+  const {id, title, description, price, images} = cartItem.product;
 
 
   console.log('Cart Item Compopnent: ', cartItem)
@@ -14,6 +15,9 @@ const CartItem = ({ cartItem }) => {
   useEffect( () => {
     setSubTotal(price * count);
   }, [count])
+
+
+  const {deleteItemCart} = useContext(CartContext);
 
   return (
     <>
@@ -65,7 +69,10 @@ const CartItem = ({ cartItem }) => {
         <div className="pe-3 d-flex flex-column justify-content-between align-items-end">
           
           <h7 className="fst-italic fw-medium text-secondary">$ {subTotal.toFixed(2)}</h7>
-          <i class="fas fa-trash text-danger"></i>
+          <button className="btn" onClick={() => deleteItemCart(id)}>
+
+            <i className="fas fa-trash text-danger"></i>
+          </button>
         </div>
       </div>
     </>
