@@ -1,7 +1,5 @@
 import { useState } from "react";
-import ProductCard from '../components/ProductCard';
 import ProductCard2 from "../components/ProductCard2";
-import useFetchData from "../hooks/useFetchDate";
 
 import { useQuery } from "@tanstack/react-query";
 import { getData } from "../data/getData";
